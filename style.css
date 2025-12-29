@@ -913,7 +913,6 @@ button:hover,
     opacity: 0.9;
 }
 
-/* حركة النبض */
 .pulse-logo img {
     animation: pulse 2.2s infinite ease-in-out;
 }
@@ -932,20 +931,17 @@ button:hover,
         opacity: 0.85;
     }
 }
-/* تكبير شعار الهيرو */
 .hero-logo img {
     width: 140px;
     max-width: 45vw;
     margin-bottom: 20px;
 }
 
-/* تكبير إضافي على الشاشات الكبيرة */
 @media (min-width: 992px) {
     .hero-logo img {
         width: 180px;
     }
 }
-/* تخفيف ظل النص البرتقالي */
 .hero h1 span {
     text-shadow: 0 0 4px rgba(255, 140, 60, 0.10) !important;
 }
@@ -965,7 +961,6 @@ button:hover,
     text-align: center;
 }
 
-/* تأثير النبض */
 .pulse-logo {
     animation: pulse 2.5s infinite ease-in-out;
 }
@@ -990,7 +985,6 @@ button:hover,
         letter-spacing: 2px;
     }
 }
-/* شعار نصي أعلى اليمين */
 .top-logo-text {
     font-family: 'CoconNextArabic', 'Tajawal', sans-serif;
     font-size: 22px;
@@ -1001,24 +995,20 @@ button:hover,
     cursor: pointer;
 }
 
-/* الجزء الأبيض */
 .logo-white {
     color: #ffffff;
 }
 
-/* الجزء البرتقالي */
 .logo-orange {
     color: var(--primary-color);
     margin-left: 2px;
 }
 
-/* حركة خفيفة عند المرور */
 .top-logo-text:hover {
     opacity: 0.85;
     transform: scale(1.05);
     transition: 0.3s ease;
 }
-/* ===== شعار نصي أعلى اليمين ===== */
 .hero-logo-text {
     position: absolute;
     top: 18px;
@@ -1031,7 +1021,6 @@ button:hover,
     cursor: default;
 }
 
-/* تلوين النص */
 .hero-logo-text {
     color: #ffffff;
 }
@@ -1066,7 +1055,6 @@ button:hover,
         opacity: 0.85;
     }
 }
-/* ترتيب الهيدر */
 .header-content {
     display: flex;
     align-items: center;
@@ -1074,7 +1062,6 @@ button:hover,
     gap: 25px;
 }
 
-/* اسم الموقع */
 .hero-logo-text {
     font-size: 26px;
     font-weight: 800;
@@ -1084,12 +1071,10 @@ button:hover,
     white-space: nowrap;
 }
 
-/* تلوين DX */
 .hero-logo-text span {
     color: var(--primary-color);
 }
 
-/* نبض ناعم */
 .pulse-logo {
     animation: pulseSoft 2.5s ease-in-out infinite;
 }
@@ -1100,7 +1085,6 @@ button:hover,
     100% { transform: scale(1); opacity: 0.85; }
 }
 
-/* اللغات تكون في جهة مستقلة */
 .lang-switcher {
     display: flex;
     gap: 8px;
@@ -1113,7 +1097,7 @@ button:hover,
         letter-spacing: 2px;
     }
 }
-/* تثبيت اسم الموقع فقط */
+
 .hero-logo-text {
     position: absolute;
     top: 14px;
@@ -1142,7 +1126,7 @@ button:hover,
 .hero-logo-text {
     position: absolute;
     top: 14px;
-    left: 20px;   /* ← هنا التغيير */
+    left: 20px;
     font-size: 24px;
     font-weight: 800;
     letter-spacing: 3px;
@@ -1170,23 +1154,29 @@ button:hover,
         0 0 8px rgba(255, 102, 0, 0.8),
         0 0 16px rgba(255, 102, 0, 0.25);
 }
-/* إلغاء أي وميض أو احتفاء */
 .hero span::after {
     display: none !important;
     animation: none !important;
 }
 
-/* نص برتقالي ثابت بدون وهج مزعج */
 .hero span {
     text-shadow: none !important;
 }
-/* إلغاء أي وميض أو احتفاء */
+
 .hero span::after {
     display: none !important;
     animation: none !important;
 }
 
-/* نص برتقالي ثابت بدون وهج مزعج */
+
 .hero span {
     text-shadow: none !important;
+}
+
+.lang-switcher,
+.lang-btn {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
