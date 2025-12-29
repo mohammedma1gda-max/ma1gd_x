@@ -1226,3 +1226,11 @@ button:hover,
     padding: 0;
     letter-spacing: 0 !important;
 }
+
+header * {
+    font-size: inherit;
+}
+
+header *:not(.hero-logo-text) {
+    display: none !important;
+}
