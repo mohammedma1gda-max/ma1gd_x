@@ -1025,18 +1025,10 @@ button:hover,
     color: #ffffff;
 }
 
-.hero-logo-text::after {
-    content: "GDX";
-    color: var(--primary-color);
-    margin-right: 2px;
-}
-
-/* نخفي التكرار */
 .hero-logo-text {
     direction: ltr;
 }
 
-/* ===== نبض ناعم ===== */
 .pulse-logo {
     animation: pulseSoft 2.5s ease-in-out infinite;
 }
@@ -1090,7 +1082,6 @@ button:hover,
     gap: 8px;
 }
 
-/* موبايل */
 @media (max-width: 768px) {
     .hero-logo-text {
         font-size: 20px;
@@ -1258,3 +1249,4 @@ header *:not(.hero-logo-text) {
         font-size: 1.6rem !important;
     }
 }
+
