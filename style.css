@@ -1524,3 +1524,23 @@ body.light-mode p {
 body.light-mode .animated-bg {
   display: none;
 }
+.theme-switch,
+#darkModeToggle,
+label[for="darkModeToggle"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.light-mode,
+.light-mode * {
+  background: #000 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+body,
+body * {
+  transition: none !important;
+}
