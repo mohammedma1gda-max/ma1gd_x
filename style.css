@@ -1291,3 +1291,57 @@ header *:not(.hero-logo-text) {
 .hero-logo-text * {
     font-family: 'CoconNextArabic', 'Tajawal', sans-serif !important;
 }
+/* ===== Switch Button ===== */
+.theme-switch {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 9999;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.theme-switch label {
+    width: 56px;
+    height: 30px;
+    background: #444;
+    display: block;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* الدائرة */
+.theme-switch label::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+/* عند التفعيل */
+.theme-switch input:checked + label {
+    background: var(--primary-color);
+}
+
+.theme-switch input:checked + label::after {
+    left: 28px;
+}
+
+/* ===== Light Mode ===== */
+body.light {
+    --bg-dark: #ffffff;
+    --bg-card: #f3f3f3;
+    --text-light: #000000;
+    --text-gray: #555555;
+    background: #ffffff;
+    color: #000000;
+}
