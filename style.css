@@ -1345,3 +1345,62 @@ body.light {
     background: #ffffff;
     color: #000000;
 }
+/* زر التحويل (أعلى اليسار) */
+.theme-switch {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.theme-switch label {
+    width: 50px;
+    height: 26px;
+    background: #333;
+    display: block;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-switch label::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+/* عند التفعيل */
+.theme-switch input:checked + label {
+    background: #ff6600;
+}
+
+.theme-switch input:checked + label::after {
+    transform: translateX(24px);
+}
+
+/* الوضع الفاتح */
+body.light-mode {
+    background: #f7f7f7;
+    color: #111;
+}
+
+body.light-mode header {
+    background: rgba(255,255,255,0.95);
+}
+
+body.light-mode .card,
+body.light-mode .pricing-card {
+    background: #ffffff;
+    color: #111;
+}
