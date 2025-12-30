@@ -19,10 +19,10 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
-    overflow-x: hidden; /* لمنع ظهور شريط تمرير أفقي بسبب التأثيرات */
+    overflow-x: hidden; 
 }
 
-/* الهيدر */
+
 header {
     background: rgba(10, 10, 10, 0.95);
     padding: 0.5rem 5%;
@@ -1261,4 +1261,33 @@ header *:not(.hero-logo-text) {
     letter-spacing: -2px;
     white-space: nowrap;
 }
+@font-face {
+    font-family: 'CoconNextArabic';
+    src: url('cocon-next-arabic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
+
+.hero-logo-text,
+.hero-logo-text span,
+.hero-logo-text * {
+    font-family: 'coconNextArabic', 'Tajawal', sans-serif !important;
+    letter-spacing: -2px;
+    white-space: nowrap;
+}
+
+.hero-logo-text {
+    font-family: 'coconNextArabic', 'Tajawal', sans-serif !important;
+    text-align: right;
+    direction: rtl;
+    margin-left: auto;
+    margin-right: 0;
+    white-space: nowrap;
+}
+
+.hero-logo-text span,
+.hero-logo-text * {
+    font-family: 'CoconNextArabic', 'Tajawal', sans-serif !important;
+}
