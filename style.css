@@ -1,0 +1,1192 @@
+:root {
+    --primary-color: #ff6600;
+    --secondary-color: #10b981;
+    --bg-dark: #0a0a0a;
+    --bg-card: #141414;
+    --text-light: #ffffff;
+    --text-gray: #cccccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* لمنع ظهور شريط تمرير أفقي بسبب التأثيرات */
+}
+
+/* الهيدر */
+header {
+    background: rgba(10, 10, 10, 0.95);
+    padding: 0.5rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px); /* تأثير ضبابي خلف الهيدر */
+}
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.lang-switcher { display: flex; gap: 10px; }
+.lang-btn { background: transparent; border: 1px solid var(--text-gray); color: var(--text-gray); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.lang-btn.active, .lang-btn:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; }
+.logo-container { display: flex; align-items: center; }
+.site-logo { height: 60px; width: auto; }
+nav { display: flex; gap: 20px; }
+nav a { color: var(--text-light); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 1.1rem; }
+nav a:hover { color: var(--primary-color); }
+html[dir="ltr"] nav { margin-left: auto; margin-right: 0; }
+html[dir="ltr"] .lang-switcher { margin-left: 20px; }
+
+/* --- تأثيرات الشاشة الرئيسية (Hero Section Animations) --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* الخلفية المتحركة */
+.animated-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+    z-index: -1;
+}
+.animated-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 200vw; height: 200vh;
+    transform: translate(-50%, -50%);
+    background-image: 
+        radial-gradient(rgba(255, 102, 0, 0.1) 2px, transparent 2px),
+        radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px;
+    animation: moveBackground 30s linear infinite;
+    opacity: 0.5;
+}
+@keyframes moveBackground {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* تأثير ظهور النصوص */
+.hero-content { position: relative; z-index: 1; }
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
+.hero span { color: var(--primary-color); position: relative; display: inline-block; }
+/* تأثير وميض على النص الملون */
+.hero span::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--primary-color); opacity: 0.2; filter: blur(20px); z-index: -1;
+    animation: pulse 3s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.4; } }
+
+.hero p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.hero-btns { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+
+/* الأزرار العامة */
+.bttn-unite { border-color: var(--primary-color) !important; color: var(--primary-color) !important; }
+.bttn-unite:before { background: var(--primary-color) !important; }
+.bttn-fill.bttn-success:before { background: var(--secondary-color) !important; }
+.bttn-fill.bttn-success { color: #fff !important; border: none !important; }
+
+/* الأقسام */
+.section { padding: 100px 5%; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 3rem; margin-bottom: 15px; color: var(--primary-color); }
+.section-title p { font-size: 1.2rem; color: var(--text-gray); }
+
+/* الخدمات */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+.card { background: var(--bg-card); padding: 40px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; text-align: center; }
+.card:hover { transform: translateY(-15px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(255, 102, 0, 0.1); }
+.card i { font-size: 4rem; color: var(--primary-color); margin-bottom: 25px; }
+.card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+.card p { color: var(--text-gray); margin-bottom: 30px; }
+
+/* --- تنسيقات الباقات الجديدة (4 أعمدة) --- */
+.pricing-grid.four-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* عرض أقل قليلاً لتناسب 4 */
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: stretch; /* لجعل البطاقات بنفس الطول */
+}
+.pricing-card {
+    background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px 25px; text-align: center; position: relative; transition: 0.3s; display: flex; flex-direction: column;
+}
+.pricing-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+
+/* الباقة المميزة (ChatGPT Go) - اللون الأخضر */
+.pricing-card.popular {
+    border: 2px solid var(--secondary-color);
+    background: linear-gradient(180deg, #141414 0%, rgba(16, 185, 129, 0.1) 100%);
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+}
+.pricing-card.popular:hover { transform: scale(1.05) translateY(-10px); }
+
+.badge-pop {
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--secondary-color); color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; white-space: nowrap;
+}
+
+/* شعار الباقة */
+.plan-logo { font-size: 3.5rem; margin-bottom: 15px; color: var(--primary-color); transition: 0.3s; }
+.pricing-card:hover .plan-logo { transform: scale(1.1); }
+
+.card-header h3 { font-size: 1.6rem; margin-bottom: 5px; color: var(--text-light); }
+.card-header p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; }
+.price-box { margin-bottom: 25px; color: var(--primary-color); }
+.pricing-card.popular .price-box { color: var(--secondary-color); }
+.price-box .amount { font-size: 2.5rem; font-weight: 800; }
+.price-box .currency { font-size: 1rem; vertical-align: super; }
+.price-box .duration { font-size: 1rem; color: var(--text-gray); }
+
+.features-list-small { list-style: none; text-align: right; margin-bottom: 30px; flex-grow: 1; }
+html[dir="ltr"] .features-list-small { text-align: left; }
+.features-list-small li { margin-bottom: 12px; font-size: 0.95rem; color: #e2e8f0; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.features-list-small li i { color: var(--primary-color); font-size: 1.1rem; }
+.full-width-btn { width: 100%; font-size: 1.2rem; padding: 12px; }
+
+/* الفوتر */
+footer { background: #050505; text-align: center; padding: 30px; margin-top: 80px; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.05); }
+.social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+.social-icon { color: var(--text-gray); font-size: 1.8rem; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); text-decoration: none; }
+.social-icon:hover { background: var(--primary-color); color: white; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3); }
+
+/* للجوال */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    nav { display: none; }
+    .pricing-grid.four-cols { grid-template-columns: 1fr; max-width: 400px; }
+    .pricing-card.popular { transform: scale(1); margin: 20px 0; }
+    .pricing-card.popular:hover { transform: translateY(-10px); }
+}
+.plan-logo-img {
+    width: 55px;        /* عدل الحجم لو تحب */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* ترتيب الخدمات: 2 فوق + 1 وسط */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+/* البطاقة الوسطى */
+.services-grid .center-card {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+
+/* الجوال */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-grid .center-card {
+        width: 100%;
+    }
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.pricing-grid .center-card {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-grid .center-card {
+        width: 100%;
+    }
+}
+/* تقويس خفيف لجميع الأزرار */
+button,
+.bttn-fill,
+.bttn-unite,
+.bttn-simple {
+    border-radius: 10px;
+}
+/* تثبيت لون النص عند hover */
+button:hover,
+.bttn-fill:hover,
+.bttn-unite:hover,
+.bttn-simple:hover {
+    color: #ffffff !important;
+}
+/* تحسين زر الرمادي (تفعيل باقات الذكاء الاصطناعي) */
+.bttn-simple {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* عند المرور */
+.bttn-simple:hover {
+    background: rgb(26, 22, 80) !important;
+    transform: translateY(-2px);
+}
+/* تثبيت لون النص في أزرار الباقات عند hover */
+.pricing-card button:hover,
+.pricing-card .bttn-fill:hover,
+.pricing-card .bttn-success:hover {
+    color: #ff3c00 !important;
+}
+/* تثبيت لون النص عند hover لكل الأزرار داخل البطاقات */
+.card button:hover,
+.card .bttn-fill:hover,
+.card .bttn-unite:hover,
+.card .bttn-simple:hover,
+.pricing-card button:hover,
+.pricing-card .bttn-fill:hover,
+.pricing-card .bttn-success:hover {
+    color: #ff7300 !important;
+}
+/* شبكة التواصل */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* بطاقة التواصل */
+.contact-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* روابط التواصل */
+.contact-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
+}
+
+/* الجوال */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* كرت التواصل قابل للنقر */
+.contact-click {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.contact-click:hover {
+    transform: translateY(-6px);
+}
+/* شبكة التواصل */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* بطاقة التواصل */
+.contact-card {
+    text-align: center;
+}
+
+/* أيقونات التواصل */
+.contact-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* نص التواصل */
+.contact-text {
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+/* زر التواصل */
+.contact-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+/* الجوال */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* زر التواصل – نفس سلوك بقية الأزرار */
+.contact-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* عند اللمس / المرور */
+.contact-btn:hover {
+    background: var(--secondary-color);
+    color: #ffffff;
+}
+/* ===== تواصل نصي فقط ===== */
+.contact-text-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-text-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-text-item i {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+/* عند اللمس / المرور */
+.contact-text-item:hover {
+    color: #ffffff;
+    background: rgba(255, 102, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.contact-text-item:hover i {
+    color: var(--secondary-color);
+}
+
+/* للجوال */
+@media (max-width: 768px) {
+    .contact-text-list {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+}
+/* تقوية وضوح الدوائر المتحركة بالخلفية */
+.animated-bg::before {
+    background-image:
+        radial-gradient(rgba(255, 102, 0, 0.35) 2px, transparent 2px),
+        radial-gradient(rgba(255, 255, 255, 0) 1px, transparent 1px) !important;
+    opacity: 0.85 !important;
+}
+/* جعل البطاقة الثالثة في المنتصف */
+.services-grid .center-card {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+
+/* للجوال */
+@media (max-width: 768px) {
+    .services-grid .center-card {
+        width: 100%;
+    }
+}
+/* إزالة أي أخضر من بطاقة الباقة المميزة */
+.pricing-card.popular {
+    border: 2px solid var(--primary-color) !important;
+    background: var(--bg-card) !important;
+    box-shadow: 0 15px 30px rgba(255, 102, 0, 0.25) !important;
+    transform: scale(1.03);
+}
+
+/* شارة "الأكثر مبيعاً" بالبرتقالي */
+.pricing-card.popular .badge-pop {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(255, 102, 0, 0.45);
+}
+
+/* السعر برتقالي */
+.pricing-card.popular .price-box,
+.pricing-card.popular .amount {
+    color: var(--primary-color) !important;
+}
+
+/* الأيقونات داخل المميزات برتقالي */
+.pricing-card.popular .features-list-small i {
+    color: var(--primary-color) !important;
+}
+
+/* زر الاشتراك نفس أزرار البقية */
+.pricing-card.popular button {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+}
+/* إلغاء تمييز الباقة المميزة نهائيًا */
+.pricing-card.popular {
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: var(--bg-card) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* إخفاء شارة "الأكثر مبيعاً" */
+.pricing-card.popular .badge-pop {
+    display: none !important;
+}
+
+/* توحيد لون السعر */
+.pricing-card.popular .price-box,
+.pricing-card.popular .amount {
+    color: var(--primary-color) !important;
+}
+
+/* توحيد أيقونات المميزات */
+.pricing-card.popular .features-list-small i {
+    color: var(--primary-color) !important;
+}
+/* ===============================
+   توحيد شكل الباقات + التفاعل
+   =============================== */
+
+/* الشكل الأساسي لكل الباقات */
+.pricing-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.35s ease;
+}
+
+/* عند اللمس / المرور */
+.pricing-card:hover {
+    border-color: var(--primary-color); /* الخط البرتقالي */
+    box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.35),
+                0 20px 35px rgba(255, 102, 0, 0.25);
+    transform: translateY(-8px);
+}
+
+/* النصوص داخل الباقة تبقى طبيعية */
+.pricing-card:hover h3,
+.pricing-card:hover p,
+.pricing-card:hover li,
+.pricing-card:hover span {
+    color: var(--text-light);
+}
+
+/* ===============================
+   توحيد الأزرار (إلغاء الاختلاف)
+   =============================== */
+
+.pricing-card button,
+.pricing-card .bttn-fill,
+.pricing-card .bttn-success {
+    background: var(--primary-color) !important; /* برتقالي */
+    color: #ffffff !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+/* عند اللمس على الزر */
+.pricing-card button:hover,
+.pricing-card .bttn-fill:hover,
+.pricing-card .bttn-success:hover {
+    background: #ff7a1a !important;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   إزالة أي تمييز قديم
+   =============================== */
+
+/* إلغاء أي باقة مميزة سابقًا */
+.pricing-card.popular {
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    background: var(--bg-card) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* إخفاء شارة "الأكثر مبيعًا" */
+.badge-pop {
+    display: none !important;
+}
+/* ===============================
+   إصلاح الباقة التي لا تستجيب
+   =============================== */
+
+.pricing-card {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* استجابة موحدة لكل الباقات */
+.pricing-card:hover {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.4),
+                0 18px 35px rgba(255,102,0,0.25);
+    transform: translateY(-8px);
+}
+
+/* التأكد أن لا شيء يمنع hover */
+.pricing-card * {
+    pointer-events: auto;
+}
+
+/* ===============================
+   توحيد حجم الأزرار
+   =============================== */
+
+/* إجبار كل أزرار الباقات تكون نفس الحجم */
+.pricing-card button,
+.pricing-card .bttn-fill,
+.pricing-card .bttn-success {
+    padding: 12px 22px !important;
+    font-size: 1rem !important;
+    border-radius: 10px !important;
+}
+
+/* إزالة أي حجم كبير سابق */
+.pricing-card .bttn-lg {
+    padding: 12px 22px !important;
+    font-size: 1rem !important;
+}
+
+/* ===============================
+   استجابة الزر عند اللمس
+   =============================== */
+
+.pricing-card button:hover,
+.pricing-card .bttn-fill:hover {
+    background: #ff7a1a !important;
+    transform: translateY(-2px);
+}
+/* ===============================
+   تصحيح ألوان hover للباقة
+   =============================== */
+
+/* عند اللمس على أي باقة */
+.pricing-card:hover {
+    border-color: var(--primary-color) !important;
+}
+
+/* السعر يتحول أبيض */
+.pricing-card:hover .amount {
+    color: #ffffff !important;
+}
+
+/* العملة + المدة */
+.pricing-card:hover .currency,
+.pricing-card:hover .duration {
+    color: #ffffff !important;
+}
+
+/* ===============================
+   تصحيح لون الزر (إلغاء الأخضر)
+   =============================== */
+
+.pricing-card button {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+    transition: 0.3s ease;
+}
+
+/* عند hover على الزر */
+.pricing-card button:hover {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.4);
+}
+
+/* إلغاء أي تأثير أخضر نهائيًا */
+.pricing-card .bttn-success,
+.pricing-card .bttn-success:hover {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+}
+/* =================================
+   إزالة اللون الأخضر نهائيًا
+   ================================= */
+
+/* منع أي لون أخضر من bttn.css */
+.bttn-success,
+.bttn-success:before,
+.bttn-success:hover,
+.bttn-success:focus {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+}
+
+/* =================================
+   تفاعل الباقة عند اللمس
+   ================================= */
+
+.pricing-card {
+    transition: 0.3s ease;
+}
+
+.pricing-card:hover {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.25);
+}
+
+/* السعر */
+.pricing-card:hover .amount {
+    color: #ffffff !important;
+}
+
+/* العملة + المدة */
+.pricing-card:hover .currency,
+.pricing-card:hover .duration {
+    color: #ffffff !important;
+}
+
+/* =================================
+   الزر (أبيض + نص برتقالي)
+   ================================= */
+
+.pricing-card button,
+.pricing-card a.bttn-fill {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+/* hover الزر */
+.pricing-card button:hover,
+.pricing-card a.bttn-fill:hover {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.35);
+}
+/* ======================================
+   تخصيص أزرار الباقات فقط (بدون غيرها)
+====================================== */
+
+/* الزر داخل الباقات فقط */
+#go-plan .pricing-card .bttn-fill,
+#go-plan .pricing-card button {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border: 2px solid transparent !important;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+/* الطبقة الوهمية الخاصة بـ bttn.css داخل الباقات فقط */
+#go-plan .pricing-card .bttn-fill::before,
+#go-plan .pricing-card button::before {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* hover للزر داخل الباقات */
+#go-plan .pricing-card .bttn-fill:hover,
+#go-plan .pricing-card button:hover {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.35);
+}
+/* ======================================
+   أزرار الباقات (تبديل برتقالي ↔ أبيض)
+====================================== */
+
+/* الحالة الطبيعية */
+#go-plan .pricing-card .bttn-fill,
+#go-plan .pricing-card button {
+    background: var(--primary-color) !important; /* برتقالي */
+    color: #ffffff !important;                  /* نص أبيض */
+    border: 2px solid var(--primary-color) !important;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* طبقة bttn.css الوهمية */
+#go-plan .pricing-card .bttn-fill::before,
+#go-plan .pricing-card button::before {
+    background: var(--primary-color) !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* عند اللمس / hover */
+#go-plan .pricing-card .bttn-fill:hover,
+#go-plan .pricing-card button:hover {
+    background: #ffffff !important;             /* أبيض */
+    color: var(--primary-color) !important;     /* نص برتقالي */
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.35);
+}
+/* ======================================
+   إصلاح نهائي لأزرار الباقات (Hover + Tap)
+====================================== */
+
+/* الحالة الطبيعية */
+#go-plan .pricing-card .bttn-fill,
+#go-plan .pricing-card button {
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+    border: 2px solid var(--primary-color) !important;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+/* كسر تأثير bttn.css الداخلي */
+#go-plan .pricing-card .bttn-fill::before,
+#go-plan .pricing-card button::before {
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+/* hover (كمبيوتر) + active (جوال) + focus */
+#go-plan .pricing-card .bttn-fill:hover,
+#go-plan .pricing-card .bttn-fill:active,
+#go-plan .pricing-card .bttn-fill:focus,
+#go-plan .pricing-card button:hover,
+#go-plan .pricing-card button:active,
+#go-plan .pricing-card button:focus {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(255,102,0,0.35);
+    outline: none !important;
+}
+.hero-logo {
+    margin-bottom: 25px;
+    animation: floatLogo 4s ease-in-out infinite;
+    text-align: center;
+}
+
+.hero-logo img {
+    width: 120px;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 25px rgba(255,102,0,0.35));
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+/* =========================
+   ترتيب متعرج لبطاقات الخدمات
+========================= */
+
+.services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* البطاقة يمين */
+.service-right {
+    align-self: flex-end;
+    width: 70%;
+}
+
+/* البطاقة يسار */
+.service-left {
+    align-self: flex-start;
+    width: 70%;
+}
+
+/* الجوال: كلهم وسط وتحت بعض */
+@media (max-width: 768px) {
+    .service-right,
+    .service-left {
+        align-self: center;
+        width: 100%;
+    }
+}
+/* =================================
+   تصغير عرض البطاقات على الجوال
+   ================================= */
+
+@media (max-width: 768px) {
+
+    /* الشبكة نفسها */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 12px;
+    }
+
+    /* كل البطاقات */
+    .services-grid .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        box-sizing: border-box;
+    }
+
+    /* البطاقات يمين ويسار ترجع وسط */
+    .service-right,
+    .service-left {
+        transform: none !important;
+    }
+
+}
+/* =================================
+   شعار الهيرو (نبض)
+   ================================= */
+
+.hero-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.hero-logo img {
+    width: 110px;
+    max-width: 40vw;
+    opacity: 0.9;
+}
+
+/* حركة النبض */
+.pulse-logo img {
+    animation: pulse 2.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+}
+/* تكبير شعار الهيرو */
+.hero-logo img {
+    width: 140px;
+    max-width: 45vw;
+    margin-bottom: 20px;
+}
+
+/* تكبير إضافي على الشاشات الكبيرة */
+@media (min-width: 992px) {
+    .hero-logo img {
+        width: 180px;
+    }
+}
+/* تخفيف ظل النص البرتقالي */
+.hero h1 span {
+    text-shadow: 0 0 4px rgba(255, 140, 60, 0.10) !important;
+}
+@font-face {
+    font-family: 'cocon-next-arabic';
+    src: url('cocon-next-arabic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.hero-logo-text {
+    font-family: 'cocon-next-arabic', 'Tajawal', sans-serif;
+    font-size: 58px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* تأثير النبض */
+.pulse-logo {
+    animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.07);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}
+@media (max-width: 768px) {
+    .hero-logo-text {
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
+}
+/* شعار نصي أعلى اليمين */
+.top-logo-text {
+    font-family: 'CoconNextArabic', 'Tajawal', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* الجزء الأبيض */
+.logo-white {
+    color: #ffffff;
+}
+
+/* الجزء البرتقالي */
+.logo-orange {
+    color: var(--primary-color);
+    margin-left: 2px;
+}
+
+/* حركة خفيفة عند المرور */
+.top-logo-text:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+/* ===== شعار نصي أعلى اليمين ===== */
+.hero-logo-text {
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    font-family: 'Tajawal', sans-serif;
+    z-index: 9999;
+    cursor: default;
+}
+
+/* تلوين النص */
+.hero-logo-text {
+    color: #ffffff;
+}
+
+.hero-logo-text::after {
+    content: "GDX";
+    color: var(--primary-color);
+    margin-right: 2px;
+}
+
+/* نخفي التكرار */
+.hero-logo-text {
+    direction: ltr;
+}
+
+/* ===== نبض ناعم ===== */
+.pulse-logo {
+    animation: pulseSoft 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+    0% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+    50% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.85;
+    }
+}
+/* ترتيب الهيدر */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* اسم الموقع */
+.hero-logo-text {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+    direction: ltr;
+    white-space: nowrap;
+}
+
+/* تلوين DX */
+.hero-logo-text span {
+    color: var(--primary-color);
+}
+
+/* نبض ناعم */
+.pulse-logo {
+    animation: pulseSoft 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+    0% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.85; }
+}
+
+/* اللغات تكون في جهة مستقلة */
+.lang-switcher {
+    display: flex;
+    gap: 8px;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .hero-logo-text {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
+/* تثبيت اسم الموقع فقط */
+.hero-logo-text {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+    direction: ltr;
+    z-index: 2000;
+    white-space: nowrap;
+}
+
+.hero-logo-text span {
+    color: var(--primary-color);
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .hero-logo-text {
+        font-size: 18px;
+        right: 12px;
+        top: 12px;
+    }
+}
+.hero-logo-text {
+    position: absolute;
+    top: 14px;
+    left: 20px;   /* ← هنا التغيير */
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #ffffff;
+    direction: ltr;
+    z-index: 2000;
+    white-space: nowrap;
+}
+
+.hero-logo-text span {
+    color: var(--primary-color);
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .hero-logo-text {
+        font-size: 18px;
+        left: 12px;
+        top: 12px;
+    }
+}
+.hero h1 span {
+    color: var(--primary-color);
+    text-shadow:
+        0 0 8px rgba(255, 102, 0, 0.8),
+        0 0 16px rgba(255, 102, 0, 0.25);
+}
+/* إلغاء أي وميض أو احتفاء */
+.hero span::after {
+    display: none !important;
+    animation: none !important;
+}
+
+/* نص برتقالي ثابت بدون وهج مزعج */
+.hero span {
+    text-shadow: none !important;
+}
+/* إلغاء أي وميض أو احتفاء */
+.hero span::after {
+    display: none !important;
+    animation: none !important;
+}
+
+/* نص برتقالي ثابت بدون وهج مزعج */
+.hero span {
+    text-shadow: none !important;
+}
