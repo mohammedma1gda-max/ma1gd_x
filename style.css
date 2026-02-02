@@ -1557,4 +1557,11 @@ body * {
     z-index: 1;
 }
 
+footer a:hover {
+  opacity: 0.8;
+}
+
+footer a:active {
+  transform: scale(0.95);
+}
 
