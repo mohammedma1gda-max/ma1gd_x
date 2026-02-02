@@ -1,4 +1,4 @@
-:root {
+بق:root {
     --primary-color: #ff6600;
     --secondary-color: #10b981;
     --bg-dark: #0a0a0a;
@@ -1555,6 +1555,76 @@ body * {
 .hero-content {
     position: relative;
     z-index: 1;
+}
+
+/* هيكل الصفحة */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #0a0a0a;
+}
+
+/* محتوى الصفحة */
+.page-content {
+  flex: 1;
+}
+
+/* الفوتر */
+.site-footer {
+  background: #000;
+  padding: 30px 15px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* عنوان التواصل */
+.site-footer h2 {
+  color: #ff7a00;
+  margin-bottom: 10px;
+}
+
+/* نصوص */
+.site-footer p,
+.site-footer span {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* الأيقونات */
+.site-footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.site-footer .social-icons a {
+  width: 42px;
+  height: 42px;
+  background: #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.site-footer .social-icons a:hover {
+  background: #ff7a00;
+  color: #000;
+}
+
+/* الحقوق */
+.site-footer .copyright {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #aaa;
 }
 
 
