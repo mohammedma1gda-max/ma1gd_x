@@ -1765,3 +1765,110 @@ footer span:hover {
     0 0 30px #ff4d00,
     0 0 60px #ff1a00;
 }
+/* ===============================
+   MULTI FIRE SPARKS – PRO
+================================ */
+@keyframes sparkMove {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.4);
+  }
+}
+
+/* الأساس */
+.contact-text-item,
+.social-icon {
+  position: relative;
+  overflow: visible;
+}
+
+/* مجموعة الشرر */
+.contact-text-item::before,
+.social-icon::before,
+.contact-text-item::after,
+.social-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff200, #ff7a00, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* عند المرور */
+.contact-text-item:hover::before,
+.social-icon:hover::before {
+  opacity: 1;
+  --dx: -40px;
+  --dy: -60px;
+  animation: sparkMove 0.6s ease-out;
+}
+
+.contact-text-item:hover::after,
+.social-icon:hover::after {
+  opacity: 1;
+  --dx: 45px;
+  --dy: -55px;
+  animation: sparkMove 0.7s ease-out;
+}
+
+/* شرر إضافي */
+.contact-text-item span::before,
+.contact-text-item span::after,
+.social-icon i::before,
+.social-icon i::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffd000, #ff4500, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-text-item:hover span::before,
+.social-icon:hover i::before {
+  opacity: 1;
+  --dx: -25px;
+  --dy: -35px;
+  animation: sparkMove 0.5s ease-out;
+}
+
+.contact-text-item:hover span::after,
+.social-icon:hover i::after {
+  opacity: 1;
+  --dx: 30px;
+  --dy: -40px;
+  animation: sparkMove 0.55s ease-out;
+}
+
+/* ===============================
+   FIRE GLOW BOOST
+================================ */
+.contact-text-item:hover,
+.social-icon:hover {
+  transform: translateY(-6px) scale(1.18);
+  color: #ff7a00;
+  box-shadow:
+    0 0 10px rgba(255,120,0,0.9),
+    0 0 30px rgba(255,70,0,0.8),
+    0 0 70px rgba(255,30,0,0.6);
+}
+
+/* ===============================
+   FIRST TOUCH IMPACT
+================================ */
+.contact-text-item:active,
+.social-icon:active {
+  transform: scale(1.35) rotate(-2deg);
+  transition: transform 0.15s ease;
+}
